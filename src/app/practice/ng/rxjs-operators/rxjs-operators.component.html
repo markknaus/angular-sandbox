@@ -1,0 +1,79 @@
+<section>
+  <h2>NG-04: RxJS Operator Deep Dive</h2>
+
+  <!-- Exercise A -->
+  <div class="exercise">
+    <h3>Exercise A — switchMap vs mergeMap</h3>
+    <p class="objective">
+      Click the button rapidly. switchMap cancels previous requests.
+      mergeMap lets all complete. Watch the logs.
+    </p>
+    <button (click)="triggerClick()">Trigger Click</button>
+    <div class="logs">
+      <div class="log-col">
+        <strong>switchMap (latest wins)</strong>
+        <ul>
+          @for (entry of switchMapLog(); track entry) {
+            <li>{{ entry }}</li>
+          }
+        </ul>
+      </div>
+      <div class="log-col">
+        <strong>mergeMap (all complete)</strong>
+        <ul>
+          @for (entry of mergeMapLog(); track entry) {
+            <li>{{ entry }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise B -->
+  <div class="exercise">
+    <h3>Exercise B — combineLatest</h3>
+    <p class="objective">
+      Change the role. The feature list should update automatically
+      using combineLatest.
+    </p>
+    <label>
+      Role:
+      <select [(ngModel)]="selectedRole" (ngModelChange)="onRoleChange()">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </label>
+    <ul class="features">
+      @for (feature of visibleFeatures(); track feature.name) {
+        <li>{{ feature.name }}</li>
+      }
+    </ul>
+  </div>
+
+  <!-- Exercise C -->
+  <div class="exercise">
+    <h3>Exercise C — catchError and retry</h3>
+    <p class="objective">
+      The request fails 70% of the time. retry(3) attempts it up to
+      3 times before catchError handles the final failure.
+    </p>
+    <button (click)="triggerUnreliable()">Trigger Unreliable Request</button>
+    <p>Attempts: {{ retryAttempts() }}</p>
+    <p>Result: {{ retryResult() }}</p>
+  </div>
+
+  <!-- Exercise D -->
+  <div class="exercise">
+    <h3>Exercise D — takeUntilDestroyed</h3>
+    <p class="objective">
+      An interval logs every second. Navigate away and back — the interval
+      should stop when the component is destroyed. Check the console.
+    </p>
+    <ul class="interval-log">
+      @for (entry of intervalLog(); track entry) {
+        <li>{{ entry }}</li>
+      }
+    </ul>
+  </div>
+
+</section>

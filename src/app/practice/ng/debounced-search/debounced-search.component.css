@@ -1,0 +1,50 @@
+section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+h2 { margin-top: 0; }
+
+.objective {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-wrap input:focus {
+  border-color: #e94560;
+}
+
+.status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.status.loading { color: #1a1a2e; }
+.status.error   { color: #c0392b; }
+
+.results {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.results li {
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.results li:last-child { border-bottom: none; }

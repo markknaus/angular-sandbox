@@ -1,0 +1,55 @@
+<div class="table-wrap">
+
+  <div class="toolbar">
+    <input
+      type="text"
+      placeholder="Search all columns..."
+      [ngModel]="searchTerm()"
+      (ngModelChange)="onSearch($event)"
+      aria-label="Search" />
+    <span class="count">
+      {{ filteredRows().length }} result{{ filteredRows().length === 1 ? '' : 's' }}
+    </span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        @for (col of columns(); track col.field) {
+          <th
+            [class.sortable]="col.sortable"
+            [class.sorted]="sortField() === col.field"
+            (click)="col.sortable && onSort(col.field)">
+            {{ col.label }}
+            @if (col.sortable && sortField() === col.field) {
+              <span class="sort-icon">{{ sortAsc() ? '▲' : '▼' }}</span>
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of paginatedRows(); track $index) {
+        <tr>
+          @for (col of columns(); track col.field) {
+            <td>{{ getCellValue(row, col.field) }}</td>
+          }
+        </tr>
+      }
+      @if (paginatedRows().length === 0) {
+        <tr>
+          <td [attr.colspan]="columns().length" class="empty">
+            No results found
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage() === 1">Previous</button>
+    <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">Next</button>
+  </div>
+
+</div>

@@ -1,0 +1,23 @@
+<section>
+  <h2>NG-03: OnPush Change Detection</h2>
+  <p class="objective">
+    Use the buttons to observe how OnPush handles mutations vs immutable updates.
+    Watch the price of the first product. Check the browser console for logs.
+  </p>
+
+  <div class="controls">
+    <button (click)="addProduct()">
+      Add Product
+    </button>
+    <button class="warn" (click)="mutatePriceDirectly()">
+      Mutate Price Directly (UI won't update)
+    </button>
+    <button class="success" (click)="updatePriceImmutably()">
+      Update Price Immutably (UI will update)
+    </button>
+  </div>
+
+  <div class="grid">
+    <!-- TODO: render a product-card for each product using @for -->
+  </div>
+</section>

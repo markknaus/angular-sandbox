@@ -1,0 +1,82 @@
+<section>
+  <h2>NG-02: Reactive Form With Custom Validation</h2>
+  <p class="objective">
+    Complete the form below. Errors appear on touch or submit.
+    Check the browser console on successful submission.
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input id="firstName" type="text" formControlName="firstName" />
+        @if (showError('firstName')) {
+          <span class="error">First name is required (min 2 characters)</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" type="text" formControlName="lastName" />
+        @if (showError('lastName')) {
+          <span class="error">Last name is required (min 2 characters)</span>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+      @if (showError('email')) {
+        <span class="error">A valid email address is required</span>
+      }
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" />
+        @if (showError('password')) {
+          <span class="error">Min 8 characters, one uppercase letter and one number</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" />
+        @if (form.errors?.['passwordMismatch'] && (form.get('confirmPassword')?.touched || submitted())) {
+          <span class="error">Passwords do not match</span>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="role">Role</label>
+      <select id="role" formControlName="role">
+        <option value="">Select a role</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+        <option value="readonly">Read Only</option>
+      </select>
+      @if (showError('role')) {
+        <span class="error">Please select a role</span>
+      }
+    </div>
+
+    <div class="field checkbox">
+      <label>
+        <input type="checkbox" formControlName="agreeToTerms" />
+        I agree to the terms and conditions
+      </label>
+      @if (showError('agreeToTerms')) {
+        <span class="error">You must agree to the terms</span>
+      }
+    </div>
+
+    <button type="submit" [disabled]="form.invalid && submitted()">
+      Submit
+    </button>
+
+  </form>
+</section>

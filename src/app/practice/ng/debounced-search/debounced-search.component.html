@@ -1,0 +1,35 @@
+<section>
+  <h2>NG-01: Debounced Search</h2>
+  <p class="objective">
+    Type in the box below. The search service should only be called after you
+    stop typing for 400ms. Watch the loading indicator and results list.
+  </p>
+
+  <div class="search-wrap">
+    <input
+      type="text"
+      [formControl]="searchControl"
+      placeholder="Type to search..."
+      aria-label="Search" />
+  </div>
+
+  @if (loading) {
+    <p class="status loading">Searching...</p>
+  }
+
+  @if (error) {
+    <p class="status error">Search failed. Please try again.</p>
+  }
+
+  @if (!loading && !error && results.length > 0) {
+    <ul class="results">
+      @for (result of results; track result) {
+        <li>{{ result }}</li>
+      }
+    </ul>
+  }
+
+  @if (!loading && !error && results.length === 0 && searchControl.value) {
+    <p class="status">No results found.</p>
+  }
+</section>
