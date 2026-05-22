@@ -109,6 +109,9 @@ React's mental model vs Angular's framework approach, JSX, function components, 
 **20. [React for Angular Developers — Part 2: State, Routing & Ecosystem](./react-for-angular-developers-part-2.md)**
 State management (Zustand, Redux Toolkit), React Router v6, data fetching with TanStack Query, forms with React Hook Form + Zod, the broader ecosystem (Next.js, Vite, CSS Modules, Tailwind, testing with React Testing Library and Vitest), and interview preparation.
 
+**21. [Angular Library Packaging & Reusable Architecture](./angular-library-packaging-senior-guide.md)**
+How to package shared components and services as a reusable Angular library using the Angular Package Format (APF). Covers workspace setup, ng-packagr, public API design, secondary entry points, the forRoot()/provideX() patterns, versioning, publishing, Nx monorepo strategy, and senior-level interview Q&A.
+
 ---
 
 ## Quick Reference by Interview Topic
